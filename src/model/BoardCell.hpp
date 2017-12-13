@@ -1,5 +1,6 @@
 #ifndef MODEL_BOARDCELL_HPP_
 #define MODEL_BOARDCELL_HPP_
+#include <memory>
 #include <model/CardList.hpp>
 #include <string>
 
@@ -15,6 +16,7 @@ public:
 	bool isEmpty();
 	int size();
 	void turnCard();
+	void clearAll();
 	virtual void push(const Card& card) = 0;
 	virtual bool isAllowedPush(const Card& card) = 0;
 	virtual bool isFull() = 0;

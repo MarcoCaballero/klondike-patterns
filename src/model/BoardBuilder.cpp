@@ -1,20 +1,20 @@
 /*
- * BoardCellVisitor.cpp
+ * BoardBuilder.cpp
  *
  *  Created on: Dec 13, 2017
  *      Author: ezcabma
  */
 
-#include <model/BoardCellVisitor.hpp>
+#include <model/BoardBuilder.hpp>
 
 namespace model {
 
-BoardCellVisitor::BoardCellVisitor() {
+BoardBuilder::BoardBuilder() {
 	// TODO Auto-generated constructor stub
 
 }
 
-BoardCellVisitor::~BoardCellVisitor() {
+BoardBuilder::~BoardBuilder() {
 	// TODO Auto-generated destructor stub
 }
 

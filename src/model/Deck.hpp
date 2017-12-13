@@ -1,10 +1,11 @@
 #ifndef MODEL_DECK_HPP_
 #define MODEL_DECK_HPP_
+#include <memory>
 #include <model/BoardCell.hpp>
 
 namespace model {
 
-class Deck: public BoardCell {
+class Deck: public BoardCell, std::enable_shared_from_this<Deck> {
 public:
 	Deck(std::string name);
 	Deck(std::string name, CardList& cards);
@@ -14,12 +15,12 @@ public:
 	void init();
 	void shuffle();
 	void restoreFromWaste(Deck& waste);
+	void restoreFromWaste(std::shared_ptr<Deck> waste);
 	const CardList getSubList(int length);
 	void push(const Card& card);
 	bool isAllowedPush(const Card& card);
 	bool isFull();
 	void discardCardTo(Deck& waste);
-	void accept(BoardCellVisitor* visitor);
 
 };
 

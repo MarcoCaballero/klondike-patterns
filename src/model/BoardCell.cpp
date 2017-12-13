@@ -47,6 +47,12 @@ int BoardCell::size() {
 	return cards.size();
 }
 
+void BoardCell::clearAll() {
+	while (!isEmpty()) {
+		cards.pop();
+	}
+}
+
 ostream& operator<<(ostream &strm, const BoardCell &boardCell) {
 	return strm << boardCell.name << " -> " << boardCell.cards << endl;
 }

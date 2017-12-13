@@ -2,13 +2,11 @@
 #define MODEL_BOARD_HPP_
 #include <map>
 #include <memory>
-#include <model/BoardCellVisitor.hpp>
 #include <model/BoardCell.hpp>
-#include <model/Tableau.hpp>
 
 namespace model {
 
-class Board: BoardCellVisitor {
+class Board {
 public:
 	Board();
 	virtual ~Board();
@@ -22,15 +20,19 @@ public:
 	int getCountOfCompleteFoundations();
 	bool isCompleteBoard();
 	void clearAll();
-	void visitPushList(Tableau& tableau, const CardList& cards);
-	const CardList visitSublist(Deck& deck, int length);
-	const CardList visitSublist(Tableau& tableau, int length);
+	void restoreDeckFromWaste();
 
 private:
 	std::map<std::string, std::shared_ptr<BoardCell>> cells;
-	void restoreDeckFromWaste();
+
 	bool isFoundationCell(std::string target);
+	bool isTableauCell(std::string target);
+	bool isDeckCell(std::string target);
+	bool existsCellKey(std::string target);
+
 	const std::string FOUNDATIONS_REG_EXP = "f";
+	const std::string TABLEAUS_REG_EXP = "t";
+	const std::string DECKS_REG_EXP = "d";
 	const std::string DECK = "deck";
 	const std::string WASTE = "waste";
 };

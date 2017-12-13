@@ -58,6 +58,14 @@ void Deck::restoreFromWaste(Deck& waste) {
 	}
 }
 
+void Deck::restoreFromWaste(std::shared_ptr<Deck> waste) {
+	assert(!waste->isEmpty());
+	while (!waste->isEmpty()) {
+		push(waste->getCard());
+		waste->pop();
+	}
+}
+
 void Deck::discardCardTo(Deck& waste) {
 	assert(!isEmpty());
 	waste.push(getCard());

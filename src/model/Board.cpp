@@ -51,34 +51,35 @@ int Board::getCountOfCompleteFoundations() {
 	return sum;
 }
 
-bool Board::isFoundationCell(std::string target) {
-	return target.find(FOUNDATIONS_REG_EXP) != string::npos;
-}
-
 bool Board::isCompleteBoard() {
 	return getCountOfCompleteFoundations() == 4;
 }
 
-void Board::clearAll() {
-//	TO CLEAN;
-}
-
 void Board::restoreDeckFromWaste() {
 	auto deck = dynamic_pointer_cast<Deck>(cells[DECK]);
-	auto waste = dynamic_pointer_cast<Deck>(cells[WASTE]);
-	deck->restoreFromWaste(*waste);
+	deck->restoreFromWaste(make_shared<Deck>(cells[WASTE]));
 }
 
-void Board::visitPushList(Tableau& tableau, const CardList& cards) {
-	tableau.push(cards);
+void Board::clearAll() {
+	for (auto& cell: cells) {
+		cell.second->clearAll();
+	}
 }
 
-const CardList Board::visitSublist(Deck& deck, int length) {
-	return deck.getSubList(length);
+bool Board::isFoundationCell(std::string target) {
+	return existsCellKey(FOUNDATIONS_REG_EXP);
 }
 
-const CardList Board::visitSublist(Tableau& tableau, int length) {
-	return tableau.getSubList(length);
+bool Board::isTableauCell(std::string target) {
+	return existsCellKey(TABLEAUS_REG_EXP);
+}
+
+bool Board::isDeckCell(std::string target) {
+	return existsCellKey(DECKS_REG_EXP);
+}
+
+bool Board::existsCellKey(std::string target) {
+	return target != string::npos;
 }
 
 } /* namespace model */
