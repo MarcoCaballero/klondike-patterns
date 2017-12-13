@@ -1,10 +1,9 @@
-#ifndef UTILS_FRENCHDECKUTILS_HPP_
-#define UTILS_FRENCHDECKUTILS_HPP_
+#ifndef UTILS_FRENCHDECK_MODEL_UTILS_HPP_
+#define UTILS_FRENCHDECK_MODEL_UTILS_HPP_
 #include <model/Card.hpp>
 #include <string>
 
 namespace utils {
-
 class FrenchDeckUtils {
 public:
 	virtual ~FrenchDeckUtils();
@@ -29,4 +28,4 @@ private:
 };
 } /* namespace model */
 
-#endif /* UTILS_FRENCHDECKUTILS_HPP_ */
+#endif /* UTILS_FRENCHDECK_MODEL_UTILS_HPP */

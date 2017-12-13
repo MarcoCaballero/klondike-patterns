@@ -1,5 +1,5 @@
-#include <utils/FrenchDeckUtils.hpp>
 #include <model/Foundation.hpp>
+#include <model/utils/FrenchDeckUtils.hpp>
 
 using namespace std;
 using namespace utils;
@@ -26,11 +26,22 @@ void Foundation::push(const Card& card) {
 }
 
 bool Foundation::isAllowedPush(const Card& card) {
-	return true;
+	if (isEmpty())
+		return FrenchDeckUtils::instance()->isAce(getCard());
+	return checkSuit(getCard().getSuit()) and checkValue(getCard().getValue());
+
+}
+
+bool Foundation::checkSuit(int suit) {
+	return getCard().isEqualSuit(suit);
+}
+
+bool Foundation::checkValue(int value) {
+	return getCard().isFollowingValue(value);
 }
 
 bool Foundation::isFull() {
-	return FrenchDeckUtils::instance()->isKing(this->getCard());
+	return FrenchDeckUtils::instance()->isKing(getCard());
 }
 
 } /* namespace model */

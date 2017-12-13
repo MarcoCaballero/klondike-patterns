@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <model/Deck.hpp>
-#include <utils/FrenchDeckUtils.hpp>
+#include <model/utils/FrenchDeckUtils.hpp>
 
 using namespace std;
 using namespace utils;
@@ -24,27 +24,33 @@ Deck::Deck(Deck& deck) :
 Deck::~Deck() {
 }
 
+void Deck::push(const Card& card) {
+	cards.pushBack(card);
+}
+
+bool Deck::isAllowedPush(const Card& card) {
+	return true;
+}
+
 bool Deck::isFull() {
-	return FrenchDeckUtils::instance()->isFullDeck(this->size());
+	return FrenchDeckUtils::instance()->isFullDeck(size());
 }
 
 bool Deck::isFullOfInvisible() {
-	return this->cards.isFullOfInvisible();
+	return cards.isFullOfInvisible();
 }
 
 void Deck::init() {
 	shuffle();
-	this->cards.getCard().setVisibility(true);
+	cards.getCard().setVisibility(true);
 }
 
 void Deck::shuffle() {
 	srand(time(0));
-	random_shuffle(this->cards.getCards().begin(),
-			this->cards.getCards().end());
+	random_shuffle(cards.getCards().begin(), cards.getCards().end());
 }
 
 void Deck::restoreFromWaste(Deck& waste) {
-	assert(isEmpty());
 	assert(!waste.isEmpty());
 	while (!waste.isEmpty()) {
 		push(waste.getCard());
@@ -52,24 +58,16 @@ void Deck::restoreFromWaste(Deck& waste) {
 	}
 }
 
-void Deck::discardCard(Deck& waste) {
+void Deck::discardCardTo(Deck& waste) {
 	assert(!isEmpty());
 	waste.push(getCard());
-	this->pop();
-	this->turnCard();
+	pop();
+	turnCard();
 }
 
 const CardList Deck::getSubList(int length) {
 	assert(size() >= length);
-	return this->cards.getSubList(length);
-}
-
-void Deck::push(const Card& card) {
-	this->cards.pushBack(card);
-}
-
-bool Deck::isAllowedPush(const Card& card) {
-	return true;
+	return cards.getSubList(length);
 }
 
 } /* namespace model */

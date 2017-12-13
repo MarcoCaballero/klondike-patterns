@@ -18,7 +18,8 @@ public:
 	void push(const Card& card);
 	bool isAllowedPush(const Card& card);
 	bool isFull();
-	void discardCard(Deck& waste);
+	void discardCardTo(Deck& waste);
+	void accept(BoardCellVisitor* visitor);
 
 };
 

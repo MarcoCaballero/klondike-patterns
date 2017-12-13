@@ -52,7 +52,7 @@ int main() {
 	cout << endl;
 
 //	test Waste
-	deck.discardCard(waste);
+	deck.discardCardTo(waste);
 	cout << deck << endl;
 	cout << waste << endl;
 	cout << tableau << endl;

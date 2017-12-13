@@ -1,5 +1,5 @@
 #include <model/Tableau.hpp>
-#include <utils/FrenchDeckUtils.hpp>
+#include <model/utils/FrenchDeckUtils.hpp>
 
 using namespace std;
 using namespace utils;
@@ -22,23 +22,37 @@ Tableau::~Tableau() {
 }
 
 void Tableau::push(const Card& card) {
-	this->cards.pushFront(card);
+	cards.pushFront(card);
+}
+
+void Tableau::push(const CardList& cards) {
+	this->cards.pushFront(cards);
 }
 
 bool Tableau::isAllowedPush(const Card& card) {
-	return true;
+	if (isEmpty())
+		return FrenchDeckUtils::instance()->isKing(getCard());
+	return checkColor(card.getColor()) and checkValue(card.getValue());
+}
+
+bool Tableau::checkColor(int color) {
+	return !getCard().isEqualColor(color);
+}
+
+bool Tableau::checkValue(int value) {
+	return getCard().isPreviousValue(value);
 }
 
 bool Tableau::isFull() {
-	return FrenchDeckUtils::instance()->isAce(this->getCard());
+	return FrenchDeckUtils::instance()->isAce(getCard());
 }
 
 const CardList Tableau::getSubList(int length) {
-	return this->cards.getSubList(length);
+	return cards.getSubList(length);
 }
 
 bool Tableau::isFullOfInvisible() {
-	return this->cards.isFullOfInvisible();
+	return cards.isFullOfInvisible();
 }
 
 } /* namespace model */

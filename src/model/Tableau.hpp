@@ -13,12 +13,13 @@ public:
 	const CardList getSubList(int length);
 	bool isFullOfInvisible();
 	void push(const Card& card);
+	void push(const CardList& cards);
 	bool isAllowedPush(const Card& card);
 	bool isFull();
 
 private:
-	std::string name;
-	CardList cards;
+	bool checkColor(int color);
+	bool checkValue(int value);
 };
 
 } /* namespace model */

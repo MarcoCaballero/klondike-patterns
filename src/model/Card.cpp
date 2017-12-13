@@ -1,5 +1,5 @@
 #include <model/Card.hpp>
-#include <utils/FrenchDeckUtils.hpp>
+#include <model/utils/FrenchDeckUtils.hpp>
 
 using namespace std;
 using namespace utils;

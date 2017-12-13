@@ -13,6 +13,10 @@ public:
 	void push(const Card& card);
 	bool isAllowedPush(const Card& card);
 	bool isFull();
+
+private:
+	bool checkSuit(int suit);
+	bool checkValue(int value);
 };
 
 } /* namespace model */

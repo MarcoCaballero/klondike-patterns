@@ -1,4 +1,4 @@
-#include <utils/FrenchDeckUtils.hpp>
+#include <model/utils/FrenchDeckUtils.hpp>
 
 using namespace model;
 using namespace std;
