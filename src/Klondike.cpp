@@ -4,6 +4,7 @@
 #include <model/Tableau.hpp>
 #include <model/Deck.hpp>
 #include <model/Foundation.hpp>
+#include <model/BoardBuilder.hpp>
 using namespace std;
 using namespace model;
 
@@ -57,6 +58,10 @@ int main() {
 	cout << waste << endl;
 	cout << tableau << endl;
 	cout << found << endl;
+
+//  Test Board - Builder
+	BoardBuilder builder;
+	builder.buildCells();
 
 	return EXIT_SUCCESS;
 }
