@@ -19,16 +19,20 @@ BoardCell::BoardCell(BoardCell& BoardCell) :
 BoardCell::~BoardCell() {
 }
 
-Card& BoardCell::getCard() {
+Card& BoardCell::getCard()  {
 	return cards.getCard();
 }
 
-std::vector<Card>& BoardCell::getCards() {
+std::vector<Card>& BoardCell::getCards()  {
 	return cards.getCards();
 }
 
 void BoardCell::turnCard() {
 	this->getCard().setVisibility(true);
+}
+
+void BoardCell::pushList(CardList& cards) {
+	this->cards.pushFront(cards);
 }
 
 void BoardCell::pop() {
@@ -53,8 +57,18 @@ void BoardCell::clearAll() {
 	}
 }
 
+const std::string& BoardCell::getName() const {
+	return name;
+}
+
 ostream& operator<<(ostream &strm, const BoardCell &boardCell) {
-	return strm << boardCell.name << " -> " << boardCell.cards << endl;
+	return strm << "(" << boardCell.name << ")" << " -> " << boardCell.cards
+			<< endl;
+}
+
+ostream& operator<<(ostream &strm, const BoardCell* boardCell) {
+	return strm << "(" << boardCell->name << ")" << " -> " << boardCell->cards
+			<< endl;
 }
 
 } /* namespace model */

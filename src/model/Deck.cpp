@@ -58,14 +58,6 @@ void Deck::restoreFromWaste(Deck& waste) {
 	}
 }
 
-void Deck::restoreFromWaste(std::shared_ptr<Deck> waste) {
-	assert(!waste->isEmpty());
-	while (!waste->isEmpty()) {
-		push(waste->getCard());
-		waste->pop();
-	}
-}
-
 void Deck::discardCardTo(Deck& waste) {
 	assert(!isEmpty());
 	waste.push(getCard());
@@ -73,7 +65,7 @@ void Deck::discardCardTo(Deck& waste) {
 	turnCard();
 }
 
-const CardList Deck::getSubList(int length) {
+CardList* Deck::getSubList(int length) {
 	assert(size() >= length);
 	return cards.getSubList(length);
 }

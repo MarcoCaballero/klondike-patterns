@@ -10,10 +10,9 @@ public:
 	Tableau(std::string name, const CardList& cards);
 	Tableau(Tableau& tableau);
 	virtual ~Tableau();
-	const CardList getSubList(int length);
+	CardList* getSubList(int length);
 	bool isFullOfInvisible();
 	void push(const Card& card);
-	void push(const CardList& cards);
 	bool isAllowedPush(const Card& card);
 	bool isFull();
 

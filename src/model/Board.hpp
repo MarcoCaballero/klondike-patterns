@@ -1,49 +1,58 @@
 #ifndef MODEL_BOARD_HPP_
 #define MODEL_BOARD_HPP_
 #include <map>
-#include <memory>
-#include <model/BoardCell.hpp>
+#include <model/Deck.hpp>
+#include <model/Foundation.hpp>
+#include <model/Tableau.hpp>
 
 namespace model {
 
 class Board {
 public:
-	Board();
+	Board(CardList& cards);
+	Board(const Board& board);
 	virtual ~Board();
 	void push(std::string target, const Card& card);
-	void push(std::string target, const CardList& cards);
+	void push(std::string target, CardList& cards);
+
+	void discardDeckCard();
+	void showNewDeckCard();
+	void showCard(std::string target);
+
+	Card& getDeckCard();
+	Card& getCard(std::string target);
+	CardList& getCardSubList(std::string target, int length);
+
 	void pop(std::string target);
 	void pop(std::string target, int length);
-	const CardList getSubList(std::string target, int length);
-	void turnCard(std::string target);
-	bool isEmpty(std::string target);
-	bool isCompleteBoard();
-	int getCountOfCompleteFoundations();
-	void clearAll();
+
 	void restoreDeckFromWaste();
-	void setCells(
-			const std::map<std::string, std::shared_ptr<BoardCell> >& cells);
-	const std::string& getDeck() const;
-	const std::string& getWaste() const;
+
+	const std::string& getDeckName() const;
+	const std::string& getWasteName() const;
 	const char getDecksRegExp() const;
 	const char getFoundationsRegExp() const;
 	const char getTableausRegExp() const;
-	
-	
+
+	friend std::ostream& operator<<(std::ostream &ostrm, const Board* board);
 
 private:
-	std::map<std::string, std::shared_ptr<BoardCell>> cells;
+	std::map<std::string, Deck*> decks;
+	std::map<std::string, Foundation*> foundations;
+	std::map<std::string, Tableau*> tableaus;
 
-	bool isFoundationCell(std::string key);
-	bool isTableauCell(std::string key);
-	bool isDeckCell(std::string key);
-	bool existsCellKey(std::string key, const char regexp);
+	bool isFoundationCell(std::string key) const;
+	bool isTableauCell(std::string key) const;
+	bool isDeckCell(std::string key) const;
+	bool existsCellKey(std::string key, const char regexp) const;
 
 	const char FOUNDATIONS_REG_EXP = 'f';
 	const char TABLEAUS_REG_EXP = 't';
 	const char DECKS_REG_EXP = 'd';
-	const std::string DECK = "d";
-	const std::string WASTE = "w";
+	const std::string DECK = "dd";
+	const std::string WASTE = "dw";
+	const int FOUNDATIONS_SIZE = 4;
+	const int TABLEAUS_SIZE = 7;
 };
 
 } /* namespace model */

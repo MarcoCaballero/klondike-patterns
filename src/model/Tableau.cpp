@@ -25,10 +25,6 @@ void Tableau::push(const Card& card) {
 	cards.pushFront(card);
 }
 
-void Tableau::push(const CardList& cards) {
-	this->cards.pushFront(cards);
-}
-
 bool Tableau::isAllowedPush(const Card& card) {
 	if (isEmpty())
 		return FrenchDeckUtils::instance()->isKing(getCard());
@@ -47,7 +43,7 @@ bool Tableau::isFull() {
 	return FrenchDeckUtils::instance()->isAce(getCard());
 }
 
-const CardList Tableau::getSubList(int length) {
+CardList* Tableau::getSubList(int length) {
 	return cards.getSubList(length);
 }
 

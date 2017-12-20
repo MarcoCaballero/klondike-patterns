@@ -40,10 +40,10 @@ std::vector<Card>& CardList::getCards() {
 	return cards;
 }
 
-CardList CardList::getSubList(int length) {
-	CardList sublist = CardList();
+CardList* CardList::getSubList(int length) {
+	CardList* sublist = new CardList();
 	for (int i = 0; i < length; ++i) {
-		sublist.pushBack(getCard(i));
+		sublist->pushBack(getCard(i));
 	}
 	return sublist;
 }
@@ -56,15 +56,15 @@ void CardList::pushBack(const Card& card) {
 	cards.push_back(card);
 }
 
-void CardList::pushFront(const CardList& cards) {
+void CardList::pushFront(CardList& cards) {
 	for (int i = 0; i < cards.size(); ++i) {
-		pushFront(getCard(i));
+		pushFront(cards.getCard(i));
 	}
 }
 
-void CardList::pushBack(const CardList& cards) {
+void CardList::pushBack(CardList& cards) {
 	for (int i = 0; i < cards.size(); ++i) {
-		pushBack(getCard(i));
+		pushBack(cards.getCard(i));
 	}
 }
 

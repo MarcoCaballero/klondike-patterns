@@ -15,8 +15,7 @@ public:
 	void init();
 	void shuffle();
 	void restoreFromWaste(Deck& waste);
-	void restoreFromWaste(std::shared_ptr<Deck> waste);
-	const CardList getSubList(int length);
+	CardList* getSubList(int length);
 	void push(const Card& card);
 	bool isAllowedPush(const Card& card);
 	bool isFull();
