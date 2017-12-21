@@ -1,12 +1,12 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <model/Board.hpp>
+#include <model/BoardBuilder.hpp>
 #include <map>
 using namespace std;
 using namespace model;
 
-int main() {
+auto main() -> int {
 
 //	Test CardList
 	CardList cardlist;
@@ -17,17 +17,21 @@ int main() {
 		}
 	}
 
-	Board* board = new Board(cardlist);
-	cout << "Klondike v.2.0 \n" << board << endl;
+//	Board* board = new Board(cardlist);
+	Board* board = BoardBuilder(cardlist).build();
+
+	cout << "\nKlondike v.2.0 \n" << board << endl;
+
+	cout << "permiso: " << std::boolalpha << board->isAllowedPush("dd", "t1");
 
 	board->push("t1", board->getDeckCard());
 	board->showNewDeckCard();
 
-	cout << "Klondike v.2.0 \n" << board << endl;
+	cout << "\nKlondike v.2.0 \n" << board << endl;
 
 	board->discardDeckCard();
 
-	cout << "Klondike v.2.0 \n" << board << endl;
+	cout << "\nKlondike v.2.0 \n" << board << endl;
 
 //		auto list = deckp->getSubList(5);
 //		decks["dd"]->popList(5);

@@ -27,7 +27,7 @@ void Tableau::push(const Card& card) {
 
 bool Tableau::isAllowedPush(const Card& card) {
 	if (isEmpty())
-		return FrenchDeckUtils::instance()->isKing(getCard());
+		return FrenchDeckUtils::instance()->isKing(card);
 	return checkColor(card.getColor()) and checkValue(card.getValue());
 }
 

@@ -27,7 +27,7 @@ void Foundation::push(const Card& card) {
 
 bool Foundation::isAllowedPush(const Card& card) {
 	if (isEmpty())
-		return FrenchDeckUtils::instance()->isAce(getCard());
+		return FrenchDeckUtils::instance()->isAce(card);
 	return checkSuit(getCard().getSuit()) and checkValue(getCard().getValue());
 
 }

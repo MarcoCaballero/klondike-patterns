@@ -60,6 +60,7 @@ void Deck::restoreFromWaste(Deck& waste) {
 
 void Deck::discardCardTo(Deck& waste) {
 	assert(!isEmpty());
+	getCard().setVisibility(false);
 	waste.push(getCard());
 	pop();
 	turnCard();

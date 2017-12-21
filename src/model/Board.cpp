@@ -4,21 +4,10 @@ using namespace std;
 
 namespace model {
 
-Board::Board(CardList& cardlist) {
-	decks[DECK] = new Deck(DECK, cardlist);
-	decks[WASTE] = new Deck(WASTE);
-	decks[DECK]->init();
-	for (int i = 1; i <= TABLEAUS_SIZE; ++i) {
-		std::string str = "t" + std::to_string(i);
-		tableaus[str] = new Tableau(str);
-	}
-	for (int i = 1; i <= FOUNDATIONS_SIZE; ++i) {
-		std::string str = "f" + std::to_string(i);
-		foundations[str] = new Foundation(str);
-	}
-}
+Board::Board(void) {}
 
 Board::~Board() {
+	cout << "deleting..." << endl;
 	for (auto elem : decks) {
 		delete elem.second;
 	}
@@ -28,6 +17,17 @@ Board::~Board() {
 	for (auto elem : tableaus) {
 		delete elem.second;
 	}
+}
+
+bool Board::isAllowedPush(std::string origin, std::string target) {
+	assert(
+			(isFoundationCell(target) or isTableauCell(target))
+					and (existsCellKey(origin) and !isFoundationCell(origin)));
+
+	Card card = getCard(origin);
+	if (isFoundationCell(target))
+		return foundations[target]->isAllowedPush(card);
+	return tableaus[target]->isAllowedPush(card);
 }
 
 void Board::push(std::string target, const Card& card) {
@@ -45,10 +45,13 @@ void Board::push(std::string target, CardList& cards) {
 }
 
 Card& Board::getCard(std::string target) {
-	assert(isFoundationCell(target) or isTableauCell(target));
+	assert(existsCellKey(target));
 	if (isFoundationCell(target))
 		return foundations[target]->getCard();
-	return tableaus[target]->getCard();
+	if (isTableauCell(target))
+		return tableaus[target]->getCard();
+	return decks[target]->getCard();
+
 }
 
 Card& Board::getDeckCard() {
@@ -107,7 +110,23 @@ bool Board::isDeckCell(std::string key) const {
 }
 
 bool Board::existsCellKey(std::string key, const char regexp) const {
-	return key.find(regexp) != string::npos;
+	return (existsCellKey(key) and (key.at(0) == regexp));
+}
+
+bool Board::existsCellKey(std::string key) const {
+	return key.find(key) != string::npos;
+}
+
+void Board::setDecks(const std::map<std::string, Deck*>& decks) {
+	this->decks = decks;
+}
+
+void Board::setFoundations(const std::map<std::string, Foundation*>& foundations) {
+	this->foundations = foundations;
+}
+
+void Board::setTableaus(const std::map<std::string, Tableau*>& tableaus) {
+	this->tableaus = tableaus;
 }
 
 const std::string& Board::getDeckName() const {
