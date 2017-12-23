@@ -23,7 +23,7 @@ public:
 	virtual void push(const Card& card) = 0;
 	virtual bool isAllowedPush(const Card& card) = 0;
 	virtual bool isFull() = 0;
-	friend std::ostream& operator<<(std::ostream &strm, const BoardCell &boardCell);
+	friend std::ostream& operator<<(std::ostream &strm, const BoardCell& boardCell);
 	friend std::ostream& operator<<(std::ostream &strm, const BoardCell* boardCell);
 
 protected:
