@@ -2,6 +2,7 @@
 #include <model/Game.hpp>
 #include <controller/NewCardController.hpp>
 #include <controller/MoveController.hpp>
+#include <iostream>
 
 using namespace model;
 

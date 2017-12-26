@@ -4,14 +4,14 @@
 #include <controller/Coordinate.hpp>
 #include <model/Board.hpp>
 
-namespace controller {
+namespace view {
 
 class CoordinateChecker {
 public:
 	CoordinateChecker(model::Board*);
 	virtual ~CoordinateChecker();
-	bool check(Coordinate& coordinate);
-	void setCoordinate(const Coordinate& coordinate);
+	bool check(controller::Coordinate& coordinate);
+	void setCoordinate(const controller::Coordinate& coordinate);
 	bool isValid(std::string key);
 private:
 	model::Board* board;

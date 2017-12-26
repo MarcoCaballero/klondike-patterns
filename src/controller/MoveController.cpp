@@ -17,13 +17,22 @@ void MoveController::accept(GameControllerVisitor* visitor) {
 }
 
 void MoveController::move(Coordinate& coordinate) {
-	Board& board = *(this->game->getBoard());
 	string origin = coordinate.getOrigin();
 	string target = coordinate.getTarget();
-	auto& card = board.getCard(origin);
-	board.push(target, card);
-	board.pop(origin);
-	if (board.isCompleteBoard()) {
+	Card card = this->game->getBoard()->getCard(origin);
+
+	this->game->getBoard()->push(target, card);
+	this->game->getBoard()->pop(origin);
+
+	if (this->game->getBoard()->isDeckCell(origin)) {
+		this->game->getBoard()->flip(origin);
+		if (this->game->getBoard()->size(origin)==1) {
+			this->game->getBoard()->restoreDeckFromWaste();
+		}
+	}
+
+
+	if (this->game->getBoard()->isCompleteBoard()) {
 		game->setState(State::FINAL);
 	}
 }

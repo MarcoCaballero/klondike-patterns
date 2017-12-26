@@ -16,4 +16,8 @@ void StartController::accept(GameControllerVisitor* visitor) {
 	visitor->visit(this);
 }
 
+void StartController::start(){
+	this->setState(State::IN_GAME);
+}
+
 } /* namespace model */

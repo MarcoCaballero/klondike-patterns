@@ -1,9 +1,10 @@
-#include <controller/CoordinateChecker.hpp>
+#include <view/console/utils/CoordinateChecker.hpp>
 
 using namespace std;
 using namespace model;
+using namespace controller;
 
-namespace controller {
+namespace view {
 
 CoordinateChecker::CoordinateChecker(Board* board) : board(board) {
 }

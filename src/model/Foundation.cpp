@@ -28,7 +28,7 @@ void Foundation::push(const Card& card) {
 bool Foundation::isAllowedPush(const Card& card) {
 	if (isEmpty())
 		return FrenchDeckUtils::instance()->isAce(card);
-	return checkSuit(getCard().getSuit()) and checkValue(getCard().getValue());
+	return checkSuit(card.getSuit()) and checkValue(card.getValue());
 
 }
 
@@ -41,7 +41,7 @@ bool Foundation::checkValue(int value) {
 }
 
 bool Foundation::isFull() {
-	return FrenchDeckUtils::instance()->isKing(getCard());
+	return (isEmpty()? false: FrenchDeckUtils::instance()->isKing(getCard()));
 }
 
 } /* namespace model */

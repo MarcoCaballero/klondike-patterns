@@ -10,6 +10,7 @@ public:
 	NewCardController(model::Game* game);
 	virtual ~NewCardController();
 	void accept (GameControllerVisitor* visitor);
+	void control();
 };
 
 } /* namespace model */

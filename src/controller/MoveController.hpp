@@ -3,7 +3,6 @@
 
 #include <controller/GameController.hpp>
 #include <controller/Coordinate.hpp>
-#include <controller/CoordinateChecker.hpp>
 #include <controller/Status.hpp>
 
 namespace controller {

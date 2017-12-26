@@ -8,7 +8,6 @@ Board::Board(void) {
 }
 
 Board::~Board() {
-	cout << "deleting..." << endl;
 	for (auto elem : decks) {
 		delete elem.second;
 	}
@@ -33,16 +32,20 @@ bool Board::isAllowedPush(std::string origin, std::string target) {
 
 void Board::push(std::string target, const Card& card) {
 	assert(isFoundationCell(target) or isTableauCell(target));
-	if (isFoundationCell(target))
+	if (isFoundationCell(target)) {
 		foundations[target]->push(card);
-	tableaus[target]->push(card);
+	} else {
+		tableaus[target]->push(card);
+	}
 }
 
 void Board::push(std::string target, CardList& cards) {
 	assert(isFoundationCell(target) or isTableauCell(target));
-	if (isFoundationCell(target))
+	if (isFoundationCell(target)) {
 		foundations[target]->pushList(cards);
-	tableaus[target]->pushList(cards);
+	} else {
+		tableaus[target]->pushList(cards);
+	}
 }
 
 Card& Board::getCard(std::string target) {
@@ -65,9 +68,11 @@ void Board::showNewDeckCard() {
 }
 void Board::showCard(std::string target) {
 	assert(isFoundationCell(target) or isTableauCell(target));
-	if (isFoundationCell(target))
+	if (isFoundationCell(target)) {
 		foundations[target]->turnCard();
-	tableaus[target]->turnCard();
+	} else {
+		tableaus[target]->turnCard();
+	}
 }
 
 void Board::discardDeckCard() {
@@ -80,11 +85,13 @@ CardList& Board::getCardSubList(std::string target, int length) {
 }
 
 void Board::pop(std::string target) {
-	if (isFoundationCell(target))
+	if (isFoundationCell(target)) {
 		foundations[target]->pop();
-	if (isTableauCell(target))
+	} else if (isTableauCell(target)) {
 		tableaus[target]->pop();
-	decks[target]->pop();
+	} else {
+		decks[target]->pop();
+	}
 }
 
 void Board::pop(std::string target, int length) {
@@ -115,7 +122,20 @@ bool Board::existsCellKey(std::string key, const char regexp) const {
 }
 
 bool Board::existsCellKey(std::string key) const {
-	return key.find(key) != string::npos;
+	bool status = false;
+	for (auto& v : foundations) {
+		if (v.first == key)
+			status = true;
+	}
+	for (auto& v : tableaus) {
+		if (v.first == key)
+			status = true;
+	}
+	for (auto& v : decks) {
+		if (v.first == key)
+			status = true;
+	}
+	return status;
 }
 
 void Board::setDecks(const std::map<std::string, Deck*>& decks) {
@@ -160,18 +180,49 @@ bool Board::isCompleteBoard() {
 	return status;
 }
 
+bool Board::isEmpty(std::string key) {
+	assert(existsCellKey(key));
+	if (isFoundationCell(key))
+		return foundations[key]->isEmpty();
+	if (isTableauCell(key))
+		return tableaus[key]->isEmpty();
+	return decks[key]->isEmpty();
+}
+
+int Board::size(std::string key) {
+	assert(existsCellKey(key));
+	if (isFoundationCell(key))
+		return foundations[key]->size();
+	if (isTableauCell(key))
+		return tableaus[key]->size();
+	return decks[key]->size();
+}
+
+void Board::flip(std::string key) {
+	assert(existsCellKey(key));
+	if (isFoundationCell(key)) {
+		foundations[key]->turnCard();
+	} else if (isTableauCell(key)) {
+		tableaus[key]->turnCard();
+	} else {
+		decks[key]->turnCard();
+	}
+}
+
 ostream& operator<<(ostream &ostrm, const Board* board) {
 	ostrm << "Decks:" << endl;
 	for (auto &v : board->decks) {
-		ostrm << v.second << endl;
+		ostrm << v.second;
 	}
+	ostrm << endl;
 	ostrm << "Foundations:" << endl;
 	for (auto &v : board->foundations) {
-		ostrm << v.second << endl;
+		ostrm << v.second;
 	}
+	ostrm << endl;
 	ostrm << "Tableaus:" << endl;
 	for (auto &v : board->tableaus) {
-		ostrm << v.second << endl;
+		ostrm << v.second;
 	}
 	return ostrm;
 }

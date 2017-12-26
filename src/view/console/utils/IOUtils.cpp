@@ -18,12 +18,6 @@ IOUtils::IOUtils() {
 IOUtils::~IOUtils() {
 }
 
-//
-//template<class T>
-//void IOUtils::writeln(T x) {
-//	cout << x << endl;
-//}
-
 void IOUtils::write(model::Board* board) {
 	cout << board;
 }
@@ -38,13 +32,17 @@ void IOUtils::writeln(std::string text) {
 
 std::string IOUtils::readString(std::string title) {
 	string readLine;
+	write(title);
 	cin >> readLine;
+	cin.clear();
 	return readLine;
 }
 
 int IOUtils::readInt(std::string title) {
 	int readLine;
+	write(title);
 	cin >> readLine;
+	cin.clear();
 	return readLine;
 }
 }

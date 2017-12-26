@@ -18,12 +18,12 @@ void Klondike::play() {
 	GameController* gameController;
 	do {
 		gameController = logic->getController();
-		if (gameController != NULL) {
+		if (gameController) {
 			klondikeView->interact(gameController);
 		}
-	} while (gameController != nullptr);
+	} while (gameController);
 }
-
+using namespace std;
 auto main() -> int {
 	Klondike().play();
 }

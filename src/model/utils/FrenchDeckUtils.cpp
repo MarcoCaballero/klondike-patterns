@@ -10,8 +10,8 @@ const string FrenchDeckUtils::ICON_HEARTS = "\u2665";
 const string FrenchDeckUtils::ICON_SPADES = "\u2660";
 const string FrenchDeckUtils::ICON_DIAMS = "\u2666";
 const string FrenchDeckUtils::ICON_CLUBS = "\u2663";
-const int FrenchDeckUtils::KING = 13;
-const int FrenchDeckUtils::ACE = 1;
+const string FrenchDeckUtils::KING = "K";
+const string FrenchDeckUtils::ACE = "A";
 const int FrenchDeckUtils::FULL_DECK = 52;
 
 FrenchDeckUtils::FrenchDeckUtils() {
@@ -63,11 +63,11 @@ string FrenchDeckUtils::getConsoleView(const Card& card) const {
 }
 
 bool FrenchDeckUtils::isKing(const model::Card& card) const {
-	return card.getSuit() == KING;
+	return getValue(card) == KING;
 }
 
 bool FrenchDeckUtils::isAce(const model::Card& card) const {
-	return card.getSuit() == ACE;
+	return getValue(card) == ACE;
 }
 
 bool FrenchDeckUtils::isFullDeck(const int size) const {

@@ -29,7 +29,6 @@ std::string KlondikeView::getSingletonConfigure() {
 	ifstream ifs("src/view/conf.txt");
 	string line;
 	getline(ifs, line);
-	cout << "line: " << line << endl;
 	ifs.close();
 	return line;
 }

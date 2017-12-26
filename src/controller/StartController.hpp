@@ -10,6 +10,7 @@ public:
 	StartController(model::Game* game);
 	virtual ~StartController();
 	void accept (GameControllerVisitor* visitor);
+	void start();
 
 };
 

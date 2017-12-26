@@ -21,8 +21,8 @@ private:
 	static const std::string ICON_SPADES;
 	static const std::string ICON_DIAMS;
 	static const std::string ICON_CLUBS;
-	static const int KING;
-	static const int ACE;
+	static const std::string KING;
+	static const std::string ACE;
 	static const int FULL_DECK;
 	FrenchDeckUtils();
 };
