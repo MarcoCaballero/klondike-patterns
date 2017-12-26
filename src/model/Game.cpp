@@ -34,4 +34,12 @@ CardList* Game::generateCards() {
 	return cardlist;
 }
 
+void Game::setInGameState(std::string inGameState) {
+	this->inGameState = inGameState;
+}
+
+const std::string& Game::getInGameState() const {
+	return inGameState;
+}
+
 } /* namespace model */

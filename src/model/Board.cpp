@@ -4,7 +4,8 @@ using namespace std;
 
 namespace model {
 
-Board::Board(void) {}
+Board::Board(void) {
+}
 
 Board::~Board() {
 	cout << "deleting..." << endl;
@@ -121,7 +122,8 @@ void Board::setDecks(const std::map<std::string, Deck*>& decks) {
 	this->decks = decks;
 }
 
-void Board::setFoundations(const std::map<std::string, Foundation*>& foundations) {
+void Board::setFoundations(
+		const std::map<std::string, Foundation*>& foundations) {
 	this->foundations = foundations;
 }
 
@@ -147,6 +149,15 @@ const char Board::getTableausRegExp() const {
 
 const std::string& Board::getWasteName() const {
 	return WASTE;
+}
+
+bool Board::isCompleteBoard() {
+	bool status = true;
+	for (auto& v : foundations) {
+		if (!v.second->isFull())
+			status = false;
+	}
+	return status;
 }
 
 ostream& operator<<(ostream &ostrm, const Board* board) {

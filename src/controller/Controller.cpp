@@ -19,8 +19,12 @@ void Controller::setState(State state) {
 	game->setState(state);
 }
 
-Board* Controller::getBoard() const{
+Board* Controller::getBoard() const {
 	return game->getBoard();
+}
+
+void Controller::setInGameState(std::string inGameState) {
+	game->setInGameState(inGameState);
 }
 
 }

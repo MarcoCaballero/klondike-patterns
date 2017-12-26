@@ -12,10 +12,13 @@ public:
 	virtual ~Game();
 	State getState() const;
 	void setState(State state);
+	void setInGameState(std::string inGameState);
+	const std::string& getInGameState() const;
 	Board* getBoard() const;
 
 private:
 	State state;
+	std::string inGameState;
 	Board* board;
 	CardList* generateCards();
 };

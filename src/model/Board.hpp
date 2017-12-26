@@ -14,23 +14,17 @@ public:
 	virtual ~Board();
 	void push(std::string target, const Card& card);
 	void push(std::string target, CardList& cards);
-
 	void discardDeckCard();
 	void showNewDeckCard();
 	void showCard(std::string target);
-
 	Card& getDeckCard();
 	Card& getCard(std::string target);
 	CardList& getCardSubList(std::string target, int length);
-
 	void pop(std::string target);
 	void pop(std::string target, int length);
-
 	bool isAllowedPush(std::string origin, std::string target);
-
 	void restoreDeckFromWaste();
-
-
+	bool isCompleteBoard();
 	const std::string& getDeckName() const;
 	const std::string& getWasteName() const;
 	const char getDecksRegExp() const;
@@ -39,6 +33,7 @@ public:
 	void setDecks(const std::map<std::string, Deck*>& decks);
 	void setFoundations(const std::map<std::string, Foundation*>& foundations);
 	void setTableaus(const std::map<std::string, Tableau*>& tableaus);
+	bool existsCellKey(std::string key) const;
 	friend std::ostream& operator<<(std::ostream &ostrm, const Board* board);
 
 private:
@@ -51,7 +46,6 @@ private:
 	bool isTableauCell(std::string key) const;
 	bool isDeckCell(std::string key) const;
 	bool existsCellKey(std::string key, const char regexp) const;
-	bool existsCellKey(std::string key) const;
 
 	const char FOUNDATIONS_REG_EXP = 'f';
 	const char TABLEAUS_REG_EXP = 't';

@@ -12,6 +12,7 @@ public:
 	virtual ~KlondikeViewConsole();
 	/*virtual*/ void visit(controller::StartController* startController);
 	/*virtual*/ void visit(controller::NewCardController* newCardController);
+	/*virtual*/ void visit(controller::MoveController* moveController);
 };
 
 } /* namespace view */

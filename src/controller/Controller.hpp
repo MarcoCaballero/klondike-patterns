@@ -21,8 +21,9 @@ public:
 	model::State getState() const;
 	void setState(model::State state);
 	model::Board* getBoard() const;
+	void setInGameState(std::string inGameState);
 
-private:
+protected:
 	model::Game* game;
 };
 
