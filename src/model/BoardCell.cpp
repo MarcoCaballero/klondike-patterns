@@ -1,4 +1,3 @@
-#include <model/utils/FrenchDeckUtils.hpp>
 #include <model/BoardCell.hpp>
 
 using namespace std;
