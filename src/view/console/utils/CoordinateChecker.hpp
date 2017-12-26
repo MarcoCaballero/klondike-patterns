@@ -13,6 +13,7 @@ public:
 	bool check(controller::Coordinate& coordinate);
 	void setCoordinate(const controller::Coordinate& coordinate);
 	bool isValid(std::string key);
+	bool isValidToFlip(std::string key);
 private:
 	model::Board* board;
 };

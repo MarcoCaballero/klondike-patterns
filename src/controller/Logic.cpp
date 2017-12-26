@@ -2,6 +2,7 @@
 #include <model/Game.hpp>
 #include <controller/NewCardController.hpp>
 #include <controller/MoveController.hpp>
+#include <controller/FlipController.hpp>
 #include <iostream>
 
 using namespace model;
@@ -13,7 +14,7 @@ Logic::Logic() {
 	startController = new StartController(game);
 	ingameControllers["new"] = new NewCardController(game);
 	ingameControllers["move"] = new MoveController(game);
-//	ingameControllers['flip'] = new NewCardController(game);
+	ingameControllers["flip"] = new FlipController(game);
 }
 
 Logic::~Logic() {

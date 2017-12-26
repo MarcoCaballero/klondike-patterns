@@ -189,6 +189,11 @@ bool Board::isEmpty(std::string key) {
 	return decks[key]->isEmpty();
 }
 
+bool Board::isFullOfInvisible(std::string key) {
+	assert(isTableauCell(key));
+	return tableaus[key]->isFullOfInvisible();
+}
+
 int Board::size(std::string key) {
 	assert(existsCellKey(key));
 	if (isFoundationCell(key))

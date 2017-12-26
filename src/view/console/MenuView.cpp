@@ -22,15 +22,12 @@ void MenuView::print() {
 		option = io->readInt("Please select an option between 1 and 3: ");
 		switch (option) {
 		case 1:
-			io->writeln("Selected: new:");
 			gameController->setInGameState("new");
 			break;
 		case 2:
-			io->writeln("Selected: move:");
 			gameController->setInGameState("move");
 			break;
 		case 3:
-			io->writeln("Selected: flip:");
 			gameController->setInGameState("flip");
 			break;
 		default:

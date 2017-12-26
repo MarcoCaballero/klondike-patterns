@@ -9,9 +9,15 @@ namespace view {
 
 class CoordinateView {
 public:
-	CoordinateView();
+	CoordinateView(controller::GameController * gameController);
 	virtual ~CoordinateView();
-	controller::Coordinate readCoordinate(controller::GameController * gameController);
+	controller::Coordinate readCoordinate();
+	std::string readOrigin();
+	std::string readKeyFlipSurvey();
+private:
+	controller::GameController * gameController;
+	CoordinateChecker checker;
+	std::string readKey(std::string title);
 };
 
 } /* namespace view */

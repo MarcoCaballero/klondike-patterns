@@ -3,16 +3,16 @@
 
 #include <view/KlondikeView.hpp>
 
-
 namespace view {
 
 class KlondikeViewConsole: public KlondikeView {
 public:
 	KlondikeViewConsole();
 	virtual ~KlondikeViewConsole();
-	/*virtual*/ void visit(controller::StartController* startController);
-	/*virtual*/ void visit(controller::NewCardController* newCardController);
-	/*virtual*/ void visit(controller::MoveController* moveController);
+	void visit(controller::StartController* startController);
+	void visit(controller::NewCardController* newCardController);
+	void visit(controller::MoveController* moveController);
+	void visit(controller::FlipController* flipController);
 };
 
 } /* namespace view */

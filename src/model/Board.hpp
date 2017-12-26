@@ -26,6 +26,7 @@ public:
 	void restoreDeckFromWaste();
 	bool isCompleteBoard();
 	bool isEmpty(std::string key);
+	bool isFullOfInvisible(std::string key);
 	int size(std::string key);
 	void flip(std::string key);
 	const std::string& getDeckName() const;
@@ -38,6 +39,7 @@ public:
 	void setTableaus(const std::map<std::string, Tableau*>& tableaus);
 	bool existsCellKey(std::string key) const;
 	bool isDeckCell(std::string key) const;
+	bool isTableauCell(std::string key) const;
 	friend std::ostream& operator<<(std::ostream &ostrm, const Board* board);
 
 private:
@@ -47,7 +49,6 @@ private:
 
 
 	bool isFoundationCell(std::string key) const;
-	bool isTableauCell(std::string key) const;
 	bool existsCellKey(std::string key, const char regexp) const;
 
 	const char FOUNDATIONS_REG_EXP = 'f';

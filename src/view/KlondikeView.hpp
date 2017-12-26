@@ -6,6 +6,7 @@
 #include <controller/NewCardController.hpp>
 #include <controller/MoveController.hpp>
 #include <controller/StartController.hpp>
+#include <controller/FlipController.hpp>
 
 namespace view {
 
@@ -19,6 +20,7 @@ public:
 	virtual void visit(controller::StartController* startController) override {}
 	virtual void visit(controller::NewCardController* newCardController) override {}
 	virtual void visit(controller::MoveController* newCardController) override {}
+	virtual void visit(controller::FlipController* flipController) override {}
 protected:
 	KlondikeView(void);
 private:
