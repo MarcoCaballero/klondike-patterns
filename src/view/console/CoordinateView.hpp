@@ -2,7 +2,7 @@
 #define VIEW_CONSOLE_COORDINATEVIEW_HPP_
 
 #include <view/console/utils/CoordinateChecker.hpp>
-#include <controller/Coordinate.hpp>
+#include <model/Coordinate.hpp>
 #include <controller/GameController.hpp>
 
 namespace view {
@@ -11,7 +11,7 @@ class CoordinateView {
 public:
 	CoordinateView(controller::GameController * gameController);
 	virtual ~CoordinateView();
-	controller::Coordinate readCoordinate();
+	model::Coordinate readCoordinate();
 	std::string readOrigin();
 	std::string readKeyFlipSurvey();
 private:

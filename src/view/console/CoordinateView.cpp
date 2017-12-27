@@ -2,6 +2,7 @@
 #include <view/console/utils/IOUtils.hpp>
 
 using namespace controller;
+using namespace model;
 using namespace std;
 
 namespace view {

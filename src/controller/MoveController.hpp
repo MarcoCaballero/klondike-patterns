@@ -2,7 +2,7 @@
 #define CONTROLLER_MOVECONTROLLER_HPP_
 
 #include <controller/GameController.hpp>
-#include <controller/Coordinate.hpp>
+#include <model/Coordinate.hpp>
 #include <controller/Status.hpp>
 
 namespace controller {
@@ -12,8 +12,8 @@ public:
 	MoveController(model::Game* game);
 	virtual ~MoveController();
 	void accept (GameControllerVisitor* visitor);
-	void move (Coordinate& coordinate);
-	Status checkMove(Coordinate& coordinate);
+	void move (model::Coordinate& coordinate);
+	Status checkMove(model::Coordinate& coordinate);
 };
 
 } /* namespace view */

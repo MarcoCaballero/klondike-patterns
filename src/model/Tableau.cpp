@@ -31,6 +31,11 @@ bool Tableau::isAllowedPush(const Card& card) {
 	return checkColor(card.getColor()) and checkValue(card.getValue());
 }
 
+
+bool Tableau::isAllowedPush(CardList& cardlist) {
+	return isAllowedPush(cardlist.getCard(cardlist.size() - 1));
+}
+
 bool Tableau::checkColor(int color) {
 	return !getCard().isEqualColor(color);
 }

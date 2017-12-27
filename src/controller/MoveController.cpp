@@ -19,28 +19,25 @@ void MoveController::accept(GameControllerVisitor* visitor) {
 void MoveController::move(Coordinate& coordinate) {
 	string origin = coordinate.getOrigin();
 	string target = coordinate.getTarget();
-	Card card = this->game->getBoard()->getCard(origin);
+	Card card = this->game->getBoardCellCard(origin);
 
-	this->game->getBoard()->push(target, card);
-	this->game->getBoard()->pop(origin);
+	this->game->push(target, card);
+	this->game->pop(origin);
 
-	if (this->game->getBoard()->isDeckCell(origin)) {
-		this->game->getBoard()->flip(origin);
-		if (this->game->getBoard()->size(origin)==1) {
-			this->game->getBoard()->restoreDeckFromWaste();
+	if (this->game->isDeckBoardCell(origin)) {
+		this->game->flipBoardCell(origin);
+		if (this->game->getBoardCellSize(origin)==1) {
+			this->game->restoreDeckFromWaste();
 		}
 	}
 
-
-	if (this->game->getBoard()->isCompleteBoard()) {
+	if (this->game->hasWin()) {
 		game->setState(State::FINAL);
 	}
 }
 
-Status MoveController::checkMove(Coordinate& coordinate) {
-	string origin = coordinate.getOrigin();
-	string target = coordinate.getTarget();
-	if (!this->game->getBoard()->isAllowedPush(origin, target))
+Status MoveController::checkMove(model::Coordinate& coordinate) {
+	if (!this->game->isAllowedPushOnBoardCell(coordinate))
 		return Status::NOT_ALLOWED_MOVE;
 	return Status::OK;
 }

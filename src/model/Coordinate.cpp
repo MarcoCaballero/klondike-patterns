@@ -1,8 +1,8 @@
-#include <controller/Coordinate.hpp>
+#include <model/Coordinate.hpp>
 
 using namespace std;
 
-namespace controller {
+namespace model {
 
 Coordinate::Coordinate(string origin, string target) :
 		origin(origin), target(target) {

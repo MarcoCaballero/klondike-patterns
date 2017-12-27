@@ -18,9 +18,9 @@ void NewCardController::accept(GameControllerVisitor* visitor) {
 }
 
 void NewCardController::control() {
-	game->getBoard()->discardDeckCard();
-	if (this->game->getBoard()->size("dd") == 1) {
-		this->game->getBoard()->restoreDeckFromWaste();
+	this->game->disCardDeckCard();
+	if (this->game->getBoardCellSize("dd") == 1) {
+		this->game->restoreDeckFromWaste();
 	}
 }
 

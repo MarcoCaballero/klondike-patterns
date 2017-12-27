@@ -8,15 +8,11 @@ class BoardBuilder {
 public:
 	BoardBuilder(CardList& cardlist);
 	BoardBuilder(void) = delete;
-
 	BoardBuilder(BoardBuilder const& builder);
 	BoardBuilder& operator=(BoardBuilder const& rhs) = delete;
-
 	BoardBuilder(BoardBuilder && rhs) noexcept =delete;
 	BoardBuilder& operator=(BoardBuilder&& rhs) noexcept =delete;
-
 	virtual ~BoardBuilder(void) = default;
-
 	Board* build();
 
 private:
@@ -25,11 +21,9 @@ private:
 	std::map<std::string, Foundation*> foundations;
 	std::map<std::string, Tableau*> tableaus;
 	CardList cardlist;
-
 	void buildDecks();
 	void buildTableaus();
 	void buildFoundations();
-
 	const std::string DECK = "dd";
 	const std::string WASTE = "dw";
 	const int FOUNDATIONS_SIZE = 4;

@@ -11,7 +11,6 @@ public:
 	virtual ~StartController();
 	void accept (GameControllerVisitor* visitor);
 	void start();
-
 };
 
 } /* namespace model */

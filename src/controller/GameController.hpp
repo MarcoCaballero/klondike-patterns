@@ -8,10 +8,6 @@ namespace controller {
 
 class GameController: public Controller {
 public:
-	using Controller::getBoard;
-	using Controller::getState;
-	using Controller::setState;
-
 	GameController(model::Game* game);
 	virtual ~GameController();
 	virtual void accept (GameControllerVisitor* visitor) = 0;

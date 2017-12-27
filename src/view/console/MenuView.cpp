@@ -10,7 +10,6 @@ MenuView::MenuView(controller::GameController* gameController) :
 }
 
 MenuView::~MenuView() {
-	// TODO Auto-generated destructor stub
 }
 
 void MenuView::print() {

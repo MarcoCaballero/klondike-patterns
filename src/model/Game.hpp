@@ -3,6 +3,7 @@
 
 #include <model/State.h>
 #include <model/Board.hpp>
+#include <model/Coordinate.hpp>
 
 namespace model {
 
@@ -15,6 +16,16 @@ public:
 	void setInGameState(std::string inGameState);
 	const std::string& getInGameState() const;
 	Board* getBoard() const;
+	void disCardDeckCard();
+	bool isDeckBoardCell(std::string key);
+	bool isAllowedPushOnBoardCell(Coordinate coordinate);
+	bool hasWin();
+	void flipBoardCell(std::string key);
+	void restoreDeckFromWaste();
+	int getBoardCellSize(std::string key);
+	Card& getBoardCellCard(std::string key);
+	void push(std::string key, const Card& card);
+	void pop(std::string key);
 
 private:
 	State state;

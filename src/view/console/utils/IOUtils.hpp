@@ -11,20 +11,10 @@ class IOUtils {
 public:
 	static IOUtils* instance();
 	virtual ~IOUtils();
-
-//	template<class T>
-//	void write(T x);
-//
-//	template<class T>
-//	void writeln(T x);
-
 	void write(std::string text);
 	void writeln(std::string text);
-
 	void write(model::Board* board);
-
 	std::string readString(std::string title);
-
 	int readInt(std::string title);
 private:
 	IOUtils();

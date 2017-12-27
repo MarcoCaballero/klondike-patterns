@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace controller {
+namespace model {
 
 class Coordinate {
 public:

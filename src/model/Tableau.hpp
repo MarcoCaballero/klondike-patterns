@@ -14,6 +14,7 @@ public:
 	bool isFullOfInvisible();
 	void push(const Card& card);
 	bool isAllowedPush(const Card& card);
+	bool isAllowedPush(CardList& cardlist);
 	bool isFull();
 
 private:

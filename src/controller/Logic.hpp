@@ -12,7 +12,6 @@ public:
 	Logic();
 	virtual ~Logic();
 	GameController* getController();
-
 private:
 	model::Game* game;
 	StartController* startController;
