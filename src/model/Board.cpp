@@ -8,26 +8,22 @@ Board::Board(void) {
 }
 
 Board::~Board() {
-	for (auto elem : decks) {
-		delete elem.second;
-	}
-	for (auto elem : foundations) {
-		delete elem.second;
-	}
-	for (auto elem : tableaus) {
-		delete elem.second;
-	}
 }
 
 bool Board::isAllowedPush(std::string origin, std::string target) {
 	assert(
 			(isFoundationCell(target) or isTableauCell(target))
 					and (existsCellKey(origin) and !isFoundationCell(origin)));
-
 	Card card = getCard(origin);
 	if (isFoundationCell(target))
 		return foundations[target]->isAllowedPush(card);
 	return tableaus[target]->isAllowedPush(card);
+}
+
+bool Board::isAllowedPush(std::string origin, std::string target, int length) {
+	assert(isTableauCell(origin) and isTableauCell(target));
+	CardList cards = getCardSubList(origin, length);
+	return tableaus[target]->isAllowedPush(cards);
 }
 
 void Board::push(std::string target, const Card& card) {
@@ -55,7 +51,6 @@ Card& Board::getCard(std::string target) {
 	if (isTableauCell(target))
 		return tableaus[target]->getCard();
 	return decks[target]->getCard();
-
 }
 
 Card& Board::getDeckCard() {
@@ -103,6 +98,18 @@ void Board::pop(std::string target, int length) {
 
 void Board::restoreDeckFromWaste() {
 	decks[DECK]->restoreFromWaste(*decks[WASTE]);
+}
+
+void Board::restoreBoard() {
+	for (auto& v : foundations) {
+		v.second->clearAll();
+	}
+	for (auto& v : tableaus) {
+		v.second->clearAll();
+	}
+	if (!decks[WASTE]->isEmpty())
+			restoreDeckFromWaste();
+	decks[DECK]->clearAll();
 }
 
 bool Board::isFoundationCell(std::string key) const {

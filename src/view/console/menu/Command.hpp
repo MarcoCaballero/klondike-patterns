@@ -1,7 +1,6 @@
 #ifndef VIEW_CONSOLE_MENU_COMMAND_HPP_
 #define VIEW_CONSOLE_MENU_COMMAND_HPP_
 
-#include <controller/GameControllerVisitor.hpp>
 #include <controller/GameController.hpp>
 #include <view/console/CoordinateView.hpp>
 #include <view/console/MenuView.hpp>

@@ -18,20 +18,27 @@ public:
 	Board* getBoard() const;
 	void disCardDeckCard();
 	bool isDeckBoardCell(std::string key);
+	bool isTableauBoardCell(std::string key) const;
 	bool isAllowedPushOnBoardCell(Coordinate coordinate);
+	bool isAllowedPushOnBoardCell(Coordinate coordinate, int length);
 	bool hasWin();
 	void flipBoardCell(std::string key);
 	void restoreDeckFromWaste();
 	int getBoardCellSize(std::string key);
 	Card& getBoardCellCard(std::string key);
+	CardList& getBoardCellList(std::string key, int length);
 	void push(std::string key, const Card& card);
+	void push(std::string target, CardList& cards);
 	void pop(std::string key);
+	void pop(std::string target, int length);
+	void restartGame();
 
 private:
 	State state;
 	std::string inGameState;
 	Board* board;
 	CardList* generateCards();
+	void createBoard();
 };
 
 } /* namespace model */

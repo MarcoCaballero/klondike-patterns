@@ -2,7 +2,11 @@
 #define VIEW_CONSOLE_MENU_COMMANDDISPATCHER_HPP_
 
 #include <view/console/menu/Command.hpp>
-#include <controller/GameControllerVisitor.hpp>
+#include <controller/StartController.hpp>
+#include <controller/NewCardController.hpp>
+#include <controller/MoveCardController.hpp>
+#include <controller/MoveListController.hpp>
+#include <controller/FlipController.hpp>
 #include <map>
 
 namespace view {
@@ -13,8 +17,11 @@ public:
 	virtual ~CommandDispatcher();
 	void dispatch(controller::StartController* startController);
 	void dispatch(controller::NewCardController* newCardController);
-	void dispatch(controller::MoveController* moveController);
+	void dispatch(controller::MoveCardController* moveController);
+	void dispatch(controller::MoveListController* moveController);
 	void dispatch(controller::FlipController* flipController);
+	void dispatch(controller::ExitController* exitController);
+	void dispatch(controller::WinController* winController);
 private:
 	static CommandDispatcher* dispatcher;
 	CommandDispatcher();

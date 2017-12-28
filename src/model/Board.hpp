@@ -23,7 +23,9 @@ public:
 	void pop(std::string target);
 	void pop(std::string target, int length);
 	bool isAllowedPush(std::string origin, std::string target);
+	bool isAllowedPush(std::string origin, std::string target, int length);
 	void restoreDeckFromWaste();
+	void restoreBoard();
 	bool isCompleteBoard();
 	bool isEmpty(std::string key);
 	bool isFullOfInvisible(std::string key);
@@ -46,7 +48,6 @@ private:
 	std::map<std::string, Deck*> decks;
 	std::map<std::string, Foundation*> foundations;
 	std::map<std::string, Tableau*> tableaus;
-
 
 	bool isFoundationCell(std::string key) const;
 	bool existsCellKey(std::string key, const char regexp) const;

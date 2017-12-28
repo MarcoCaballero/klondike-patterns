@@ -3,13 +3,16 @@
 
 namespace model {
 
-Game::Game() :
-		state(State::INITIAL) {
-	auto& cardlist = *(generateCards());
-	board = BoardBuilder(cardlist).build();
+Game::Game():state(State::INITIAL) {
+	createBoard();
 }
 
 Game::~Game() {
+}
+
+void Game::createBoard() {
+	auto& cardlist = *(generateCards());
+	board = BoardBuilder(cardlist).build();
 }
 
 State Game::getState() const {
@@ -65,6 +68,16 @@ bool Game::isAllowedPushOnBoardCell(Coordinate coordinate) {
 	return board->isAllowedPush(origin, target);
 }
 
+bool Game::isAllowedPushOnBoardCell(Coordinate coordinate, int length) {
+	std::string origin = coordinate.getOrigin();
+	std::string target = coordinate.getTarget();
+	return board->isAllowedPush(origin, target, length);
+}
+
+bool Game::isTableauBoardCell(std::string key) const {
+	return board->isTableauCell(key);
+}
+
 bool Game::hasWin() {
 	return board->isCompleteBoard();
 }
@@ -77,12 +90,28 @@ Card& Game::getBoardCellCard(std::string key) {
 	return board->getCard(key);
 }
 
+CardList& Game::getBoardCellList(std::string key, int length) {
+	return board->getCardSubList(key, length);
+}
+
 void Game::push(std::string key, const Card& card) {
 	board->push(key, card);
+}
+
+void Game::push(std::string target, CardList& cards) {
+	board->push(target, cards);
 }
 
 void Game::pop(std::string key) {
 	board->pop(key);
 }
 
+void Game::pop(std::string target, int length) {
+	board->pop(target, length);
+}
+
+void Game::restartGame() {
+	board->restoreBoard();
+	createBoard();
+}
 } /* namespace model */

@@ -12,12 +12,14 @@ public:
 	CoordinateView(controller::GameController * gameController);
 	virtual ~CoordinateView();
 	model::Coordinate readCoordinate();
+	model::Coordinate readCoordinateLength();
 	std::string readOrigin();
 	std::string readKeyFlipSurvey();
 private:
 	controller::GameController * gameController;
 	CoordinateChecker checker;
 	std::string readKey(std::string title);
+	std::string readTableauKey(std::string title);
 };
 
 } /* namespace view */

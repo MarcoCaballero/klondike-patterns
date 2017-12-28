@@ -13,9 +13,13 @@ public:
 	const std::string& getOrigin() const;
 	const std::string& getTarget() const;
 	bool check() const;
+	int getLength() const;
+	void setLength(int length);
+
 private:
 	std::string origin;
 	std::string target;
+	int length;
 };
 
 } /* namespace view */

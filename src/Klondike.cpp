@@ -6,9 +6,8 @@ using namespace controller;
 using namespace view;
 
 Klondike::Klondike() {
-	logic = new Logic();
+	logic = LogicBuilder().build();
 	klondikeView = KlondikeView::instance();
-//	klondikeView = new KlondikeViewConsole();
 }
 
 Klondike::~Klondike() {

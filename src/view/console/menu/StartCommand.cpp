@@ -1,5 +1,5 @@
-#include <view/console/utils/IOUtils.hpp>
 #include <view/console/menu/StartCommand.hpp>
+#include <view/console/utils/IOUtils.hpp>
 
 using namespace controller;
 using namespace model;
@@ -7,7 +7,7 @@ using namespace std;
 
 namespace view {
 
-StartCommand::StartCommand(StartController* startController) :
+StartCommand::StartCommand(StartController* startController):
 		Command("Start new match", startController), startController(startController) {
 
 }

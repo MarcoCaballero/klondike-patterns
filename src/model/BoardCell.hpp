@@ -20,6 +20,7 @@ public:
 	void pushList(CardList& cards);
 	Card& getCard() ;
 	Card& getCard(int pos) ;
+	void clear();
 	virtual void push(const Card& card) = 0;
 	virtual bool isAllowedPush(const Card& card) = 0;
 	virtual bool isFull() = 0;

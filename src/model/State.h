@@ -3,7 +3,7 @@
 
 namespace model {
 enum class State {
-	INITIAL, IN_GAME, FINAL, EXIT,
+	INITIAL, IN_GAME, WIN, EXIT,
 };
 }
 

@@ -14,6 +14,8 @@ public:
 	void setCoordinate(const model::Coordinate& coordinate);
 	bool isValid(std::string key);
 	bool isValidToFlip(std::string key);
+	bool isTableau(std::string key);
+	bool isValidLength(std::string key, int length);
 private:
 	model::Board* board;
 };

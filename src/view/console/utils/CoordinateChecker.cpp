@@ -20,8 +20,17 @@ bool CoordinateChecker::isValid(string key) {
 	return board->existsCellKey(key);
 }
 
-bool CoordinateChecker::isValidToFlip(std::string key) {
-	return board->isTableauCell(key) ? board->isFullOfInvisible(key) : false;
+bool CoordinateChecker::isValidToFlip(string key) {
+	return isTableau(key) ? board->isFullOfInvisible(key) : false;
+}
+
+bool CoordinateChecker::isTableau(string key){
+	return board->isTableauCell(key);
+}
+
+
+bool CoordinateChecker::isValidLength(string key, int length) {
+	return (length > 2 && board->size(key) >= length);
 }
 
 } /* namespace view */

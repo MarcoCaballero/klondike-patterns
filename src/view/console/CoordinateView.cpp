@@ -20,10 +20,30 @@ Coordinate CoordinateView::readCoordinate() {
 	string target;
 	do {
 		target = readKey("Select target: ");
+		if(target==origin)
+			ioutils->writeln("Please origin and target could not be the same key");
 	} while (target == origin);
-	ioutils->writeln("Moving from: " + origin + "to -> " + target);
 	Coordinate coordinate(origin, target);
 	return coordinate;
+}
+
+Coordinate CoordinateView::readCoordinateLength() {
+	IOUtils* ioutils = IOUtils::instance();
+	string origin;
+	string target;
+	do {
+		origin = readTableauKey("Select origin: ");
+		target = readTableauKey("Select target: ");
+	} while (target == origin);
+	int length = ioutils->readInt("Select the length to move: ");
+
+	Coordinate coordinate(origin, target);
+	coordinate.setLength(length);
+	return coordinate;
+}
+
+std::string CoordinateView::readOrigin() {
+	return readKey("Select Origin: ");
 }
 
 std::string CoordinateView::readKey(string title = "Select key: ") {
@@ -37,6 +57,17 @@ std::string CoordinateView::readKey(string title = "Select key: ") {
 	return origin;
 }
 
+std::string CoordinateView::readTableauKey(std::string title) {
+	IOUtils* ioutils = IOUtils::instance();
+	string origin;
+	do {
+		origin = ioutils->readString(title);
+		if (!checker.isTableau(origin) or !checker.isValid(origin))
+			ioutils->writeln("Bad key, please try other...");
+	} while (!checker.isTableau(origin) or !checker.isValid(origin));
+	return origin;
+}
+
 std::string CoordinateView::readKeyFlipSurvey() {
 	IOUtils* ioutils = IOUtils::instance();
 	string origin;
@@ -44,10 +75,6 @@ std::string CoordinateView::readKeyFlipSurvey() {
 	if (!checker.isValidToFlip(origin))
 		ioutils->writeln("Bad key, please try other...");
 	return origin;
-}
-
-std::string CoordinateView::readOrigin() {
-	return readKey("Select Origin: ");
 }
 
 } /* namespace view */

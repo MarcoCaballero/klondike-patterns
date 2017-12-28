@@ -1,6 +1,6 @@
 #ifndef KLONDIKE_HPP_
 #define KLONDIKE_HPP_
-#include <controller/Logic.hpp>
+#include <controller/LogicBuilder.hpp>
 #include <view/KlondikeView.hpp>
 
 class Klondike {

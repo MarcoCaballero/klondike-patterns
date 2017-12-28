@@ -12,8 +12,11 @@ public:
 	virtual ~KlondikeViewConsole();
 	void visit(controller::StartController* startController);
 	void visit(controller::NewCardController* newCardController);
-	void visit(controller::MoveController* moveController);
+	void visit(controller::MoveCardController* moveController);
+	void visit(controller::MoveListController* moveListController);
 	void visit(controller::FlipController* flipController);
+	void visit(controller::ExitController* exitController);
+	void visit(controller::WinController* winController);
 private:
 	CommandDispatcher* menu;
 

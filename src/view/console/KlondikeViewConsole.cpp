@@ -25,8 +25,20 @@ void KlondikeViewConsole::visit(controller::FlipController* flipController) {
 	menu->dispatch(flipController);
 }
 
-void KlondikeViewConsole::visit(MoveController* moveController) {
+void KlondikeViewConsole::visit(MoveCardController* moveController) {
 	menu->dispatch(moveController);
+}
+
+void KlondikeViewConsole::visit(controller::MoveListController* moveListController) {
+	menu->dispatch(moveListController);
+}
+
+void KlondikeViewConsole::visit(controller::ExitController* exitController) {
+	menu->dispatch(exitController);
+}
+
+void KlondikeViewConsole::visit(controller::WinController* winController) {
+	menu->dispatch(winController);
 }
 
 } /* namespace view */

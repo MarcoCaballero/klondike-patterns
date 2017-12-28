@@ -8,7 +8,7 @@ using namespace std;
 
 namespace view {
 
-MoveCardCommand::MoveCardCommand(MoveController* moveController) :
+MoveCardCommand::MoveCardCommand(MoveCardController* moveController) :
 		Command("Move card: ", moveController), moveController(moveController) {
 }
 
@@ -22,9 +22,11 @@ void MoveCardCommand::executeChild() {
 	case Status::NOT_ALLOWED_MOVE:
 		ioutils->writeln("Error: not allowed move");
 		break;
-	default:
+	case Status::OK:
 		moveController->move(coordinate);
 		break;
+	default:
+		ioutils->writeln("Error: undefined error");
 	}
 }
 
