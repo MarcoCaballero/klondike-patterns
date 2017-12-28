@@ -1,4 +1,4 @@
-#include <view/console/CoordinateView.hpp>
+#include <view/console/utils/CoordinateView.hpp>
 #include <view/console/utils/IOUtils.hpp>
 
 using namespace controller;

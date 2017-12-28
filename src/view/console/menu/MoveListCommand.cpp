@@ -1,6 +1,6 @@
 #include <view/console/menu/MoveListCommand.hpp>
 #include <view/console/utils/IOUtils.hpp>
-#include <view/console/CoordinateView.hpp>
+#include <view/console/utils/CoordinateView.hpp>
 
 using namespace controller;
 using namespace model;

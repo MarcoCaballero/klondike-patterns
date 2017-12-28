@@ -1,4 +1,5 @@
 #include <view/console/KlondikeViewConsole.hpp>
+#include <view/KlondikeViewRegistry.hpp>
 
 using namespace controller;
 using namespace model;

@@ -1,5 +1,5 @@
-#include <view/console/MenuView.hpp>
-#include <view/console/BoardView.hpp>
+#include <view/console/utils/MenuView.hpp>
+#include <view/console/utils/BoardView.hpp>
 #include <view/console/utils/IOUtils.hpp>
 #include <iostream>
 

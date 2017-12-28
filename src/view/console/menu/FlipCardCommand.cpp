@@ -1,5 +1,6 @@
 #include <view/console/menu/FlipCardCommand.hpp>
 #include <view/console/utils/IOUtils.hpp>
+#include <view/console/utils/CoordinateView.hpp>
 
 using namespace controller;
 using namespace model;

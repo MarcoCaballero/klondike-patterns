@@ -1,6 +1,5 @@
 #include <view/console/utils/IOUtils.hpp>
-#include <view/console/BoardView.hpp>
-#include <model/Board.hpp>
+#include <view/console/utils/BoardView.hpp>
 
 using namespace model;
 

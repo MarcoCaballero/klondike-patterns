@@ -2,8 +2,6 @@
 #define VIEW_CONSOLE_MENU_COMMAND_HPP_
 
 #include <controller/GameController.hpp>
-#include <view/console/CoordinateView.hpp>
-#include <view/console/MenuView.hpp>
 
 namespace view {
 

@@ -31,8 +31,6 @@ protected:
 	KlondikeView(void);
 private:
 	static KlondikeView* klondikeView;
-	static const std::map<std::string, KlondikeView*> klondikeViewMap;
-	static std::map<std::string, KlondikeView*> registerMap();
 };
 
 } /* namespace view */

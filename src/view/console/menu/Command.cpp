@@ -1,4 +1,6 @@
 #include <view/console/menu/Command.hpp>
+#include <view/console/utils/MenuView.hpp>
+
 namespace view {
 
 Command::Command(std::string title, controller::GameController* gamecontroller) :
