@@ -8,15 +8,8 @@ using namespace model;
 
 namespace controller {
 
-LogicBuilder::LogicBuilder() {
-	game = new Game();
-	startController = new StartController(game);
-	exitController = new ExitController(game);
-	winController = new WinController(game);
-	ingameControllers["new"] = new NewCardController(game);
-	ingameControllers["move"] = new MoveCardController(game);
-	ingameControllers["movelist"] = new MoveListController(game);
-	ingameControllers["flip"] = new FlipController(game);
+LogicBuilder::LogicBuilder() :
+		logic(new Logic()), game(new Game()) {
 
 }
 
@@ -24,13 +17,31 @@ LogicBuilder::~LogicBuilder() {
 }
 
 Logic* LogicBuilder::build() {
-	Logic* logic = new Logic();
-	logic->setGame(game);
-	logic->setStartController(startController);
-	logic->setWinController(winController);
-	logic->setExitController(exitController);
-	logic->setIngameControllers(ingameControllers);
+	buildGame();
+	buildOutStateControllers();
+	buildInGameControllers();
 	return logic;
+}
+void LogicBuilder::buildGame() {
+	game = new Game();
+	logic->setGame(game);
+}
+
+void LogicBuilder::buildInGameControllers() {
+	std::map<std::string, GameController*> ingameControllers;
+	ingameControllers["new"] = new NewCardController(game);
+	ingameControllers["move"] = new MoveCardController(game);
+	ingameControllers["movelist"] = new MoveListController(game);
+	ingameControllers["flip"] = new FlipController(game);
+	logic->setIngameControllers(ingameControllers);
+}
+void LogicBuilder::buildOutStateControllers() {
+	StartController* startController = new StartController(game);
+	logic->setStartController(startController);
+	ExitController* exitController = new ExitController(game);
+	logic->setExitController(exitController);
+	WinController* winController = new WinController(game);
+	logic->setWinController(winController);
 }
 
 } /* namespace view */

@@ -11,11 +11,11 @@ public:
 	virtual ~LogicBuilder();
 	Logic* build();
 private:
+	Logic* logic;
 	model::Game* game;
-	StartController* startController;
-	ExitController* exitController;
-	WinController* winController;
-	std::map<std::string, GameController*> ingameControllers;
+	void buildInGameControllers();
+	void buildOutStateControllers();
+	void buildGame();
 };
 
 } /* namespace view */
